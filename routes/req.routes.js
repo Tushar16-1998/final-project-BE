@@ -33,7 +33,7 @@ router.post("/req", async (req, res) => {
     const {destination, passangers, dateTimeRange, email, kids, disabilitys, notes} = req.body;
 
     try{
-    const newReq = await ReqForm.create({destination, passangers, dateTimeRange, email, kids, disabilitys, notes});
+    const newReqForm = await ReqForm.create({destination, passangers, dateTimeRange, email, kids, disabilitys, notes});
 
     res.status(200).json(newReqForm);
     }
