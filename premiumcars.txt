@@ -1,0 +1,38 @@
+[
+  {
+    "name": "BMW 7 Series",
+    "model": "M760Li xDrive",
+    "year": "2020",
+    "image": "https://example.com/bmw7series"
+  },
+  {
+    "name": "Mercedes-Benz S-Class",
+    "model": "S 560",
+    "year": "2020",
+    "image": "https://example.com/mbssclass"
+  },
+  {
+    "name": "Audi A8",
+    "model": "A8 L",
+    "year": "2020",
+    "image": "https://example.com/audia8"
+  },
+  {
+    "name": "Lexus LS",
+    "model": "LS 500h",
+    "year": "2020",
+    "image": "https://example.com/lexusls"
+  },
+  {
+    "name": "Jaguar XJ",
+    "model": "XJL Portfolio",
+    "year": "2020",
+    "image": "https://example.com/jaguarxj"
+  },
+  {
+    "name": "Porsche Panamera",
+    "model": "Turbo S E-Hybrid",
+    "year": "2020",
+    "image": "https://example.com/porschepanamera"
+  }
+]

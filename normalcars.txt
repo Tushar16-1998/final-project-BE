@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Ford Mustang",
+    "model": "GT",
+    "year": "2022",
+    "image": "https://example.com/mustang.jpg"
+  },
+  {
+    "name": "Chevrolet Camaro",
+    "model": "SS",
+    "year": "2022",
+    "image": "https://example.com/camaro.jpg"
+  },
+  {
+    "name": "Dodge Challenger",
+    "model": "SRT Hellcat",
+    "year": "2022",
+    "image": "https://example.com/challenger.jpg"
+  },
+  {
+    "name": "BMW M4",
+    "model": "Competition",
+    "year": "2022",
+    "image": "https://example.com/m4.jpg"
+  },
+  {
+    "name": "Porsche 911",
+    "model": "Turbo S",
+    "year": "2022",
+    "image": "https://example.com/911.jpg"
+  },
+  {
+    "name": "Audi R8",
+    "model": "V10",
+    "year": "2022",
+    "image": "https://example.com/r8.jpg"
+  }
+]

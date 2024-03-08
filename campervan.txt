@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Volkswagen California",
+    "model": "T6.1",
+    "year": "2021",
+    "image": "https://example.com/vw_california.jpg"
+  },
+  {
+    "name": "Mercedes-Benz Sprinter",
+    "model": "2500",
+    "year": "2022",
+    "image": "https://example.com/mb_sprinter.jpg"
+  },
+  {
+    "name": "Ford Transit",
+    "model": "Custom",
+    "year": "2020",
+    "image": "https://example.com/ford_transit.jpg"
+  },
+  {
+    "name": "Fiat Ducato",
+    "model": "Camper Van",
+    "year": "2019",
+    "image": "https://example.com/fiat_ducato.jpg"
+  },
+  {
+    "name": "Toyota Hiace",
+    "model": "Campervan",
+    "year": "2018",
+    "image": "https://example.com/toyota_hiace.jpg"
+  },
+  {
+    "name": "Nissan NV200",
+    "model": "Campervan",
+    "year": "2017",
+    "image": "https://example.com/nissan_nv200.jpg"
+  }
+]
