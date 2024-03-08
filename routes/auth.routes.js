@@ -1,5 +1,5 @@
 const express = require('express');
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 const User = require('../models/User.model');
@@ -61,12 +61,12 @@ router.post("/signup", (req, res) => {
       const salt = bcrypt.genSaltSync(saltRounds);
       const hashedPassword = bcrypt.hashSync(password, salt);
 
-      return User.create({ email, password: hashedPassword, name, contact});
+      return User.create({ email, password: hashedPassword, name});
     })
     .then((createdUser) => {
-      const { email, name, _id, contact } = createdUser;
+      const { email, name, _id } = createdUser;
 
-      const user = { email, name, _id, contact };
+      const user = { email, name, _id };
 
       res.status(201).json({ user });
     })
@@ -77,7 +77,7 @@ router.post("/signup", (req, res) => {
 });
 
 // POST '/auth/login' - Verifies email and password and returns a JWT
-router.post("/login", (req, res) => {
+router.post("/login", (req, res,next) => {
   // ES6 Object Destructuring for email and password that belong to req.body
   const { email, password } = req.body;
 
@@ -99,9 +99,9 @@ router.post("/login", (req, res) => {
       const passwordCorrect = bcrypt.compareSync(password, foundUser.password);
 
       if (passwordCorrect) {
-        const { _id, email, name } = foundUser;
+        const { _id, email} = foundUser;
 
-        const payload = { _id, email, name };
+        const payload = { _id, email};
 
         const authToken = jwt.sign(payload, process.env.TOKEN_SECRET, {
           algorithm: "HS256",
@@ -113,15 +113,14 @@ router.post("/login", (req, res) => {
         return res.status(400).json({ message: "Password not found" });
       }
     })
-    .catch((error) => {
-      console.log(error);
-      res.status(500).json({ message: "User not found." });
-    });
+    .catch((error) => next (error));
 }); 
 
 // GET '/auth/verify' - Used to verify JWT 
 router.get('/verify', isAuthenticated, (req,res)=>{
-    res.status(200).json(req.payload);
+  console.log(`req.payload`, req.payload);  
+  res.status(200).json(req.payload);
+
 })
 
 
