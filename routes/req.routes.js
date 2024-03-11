@@ -1,11 +1,18 @@
 const router = require('express').Router();
 const ReqForm = require('../models/ReqForm.model');
 
+
+// date1 -> start date
+// date2 -> end date
+// hour1 -> start hour
+// hour2 -> end hour
+
+
 /* Create our GET all route */
-router.get("/", async (req, res)=>{
+router.get("/req", async (req, res)=>{
     try{
         const reqForm = await ReqForm.find()
-        res.status(200).json(allReqForm);
+        res.status(200).json(reqForm);
     }
     catch(error){
         console.log(error);
@@ -30,10 +37,10 @@ router.get("/req/:id", async (req, res) => {
 
 /* Create */
 router.post("/req", async (req, res) => {
-    const {destination, passangers, dateTimeRange, email, kids, disabilitys, notes} = req.body;
+    const {destination, passangers, date1, date2, email, kids, disabilitys, notes} = req.body;
 
     try{
-    const newReqForm = await ReqForm.create({destination, passangers, dateTimeRange, email, kids, disabilitys, notes});
+    const newReqForm = await ReqForm.create({destination, passangers, date1, date2, email, kids, disabilitys, notes});
 
     res.status(200).json(newReqForm);
     }
@@ -49,14 +56,14 @@ router.put("/req/:id", async (req, res) => {
       /* Destructure the id via router params */
       const { id } = req.params;
       const {
-        destination, passangers, dateTimeRange, email, kids, disabilitys, notes} = req.body
+        destination, passangers, date1, date2, email, kids, disabilitys, notes} = req.body
 
-        if(!destination|| !passangers || !dateTimeRange || !email){
+        if(!destination|| !passangers || !date1 || !date2 || !email){
             return res.status(400).json({message: "Please fill all mandatory fields!"})
           }
       /* Find the user via the id and send it back to the client */
-      const updateReqForm = await Patient.findByIdAndUpdate(id, {
-        destination, passangers, dateTimeRange, email, kids, disabilitys, notes
+      const updateReqForm = await ReqForm.findByIdAndUpdate(id, {
+        destination, passangers, date1, date2, email, kids, disabilitys, notes
       }, { new: true });
       res.status(200).json(updateReqForm);
     } catch (error) {
