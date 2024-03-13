@@ -1,14 +1,14 @@
-const express = require('express');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
+const express = require("express");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
-const User = require('../models/User.model');
+const User = require("../models/User.model");
 
-const {isAuthenticated} = require('../middleware/jwt.middleware');
+const { isAuthenticated } = require("../middleware/jwt.middleware");
 
 const router = express.Router();
 
-const saltRounds = 10; 
+const saltRounds = 10;
 
 // POST '/auth/signup' - Creates a new user in the database
 router.post("/signup", (req, res) => {
@@ -61,7 +61,7 @@ router.post("/signup", (req, res) => {
       const salt = bcrypt.genSaltSync(saltRounds);
       const hashedPassword = bcrypt.hashSync(password, salt);
 
-      return User.create({ email, password: hashedPassword, name});
+      return User.create({ email, password: hashedPassword, name });
     })
     .then((createdUser) => {
       const { email, name, _id } = createdUser;
@@ -77,7 +77,7 @@ router.post("/signup", (req, res) => {
 });
 
 // POST '/auth/login' - Verifies email and password and returns a JWT
-router.post("/login", (req, res,next) => {
+router.post("/login", (req, res, next) => {
   // ES6 Object Destructuring for email and password that belong to req.body
   const { email, password } = req.body;
 
@@ -99,9 +99,9 @@ router.post("/login", (req, res,next) => {
       const passwordCorrect = bcrypt.compareSync(password, foundUser.password);
 
       if (passwordCorrect) {
-        const { _id, email} = foundUser;
+        const { _id, email } = foundUser;
 
-        const payload = { _id, email};
+        const payload = { _id, email };
 
         const authToken = jwt.sign(payload, process.env.TOKEN_SECRET, {
           algorithm: "HS256",
@@ -113,16 +113,13 @@ router.post("/login", (req, res,next) => {
         return res.status(400).json({ message: "Password not found" });
       }
     })
-    .catch((error) => next (error));
-}); 
+    .catch((error) => next(error));
+});
 
-// GET '/auth/verify' - Used to verify JWT 
-router.get('/verify', isAuthenticated, (req,res)=>{
-  console.log(`req.payload`, req.payload);  
+// GET '/auth/verify' - Used to verify JWT
+router.get("/verify", isAuthenticated, (req, res) => {
+  console.log(`req.payload`, req.payload);
   res.status(200).json(req.payload);
+});
 
-})
-
-
-
-module.exports = router; 
+module.exports = router;
